@@ -423,7 +423,7 @@ def main():
         monitor every advertisements channels.
  
         """
-        print("dddddddddddddddddddddddd hellloz go into snifffier adv")
+        
         result = {"policy_type":"whitelist","rules":[]}
 
         pattern_list = args.sniff_advertisements.split(",")
