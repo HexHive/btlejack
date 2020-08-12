@@ -130,10 +130,17 @@ class PcapBlePHDRWriter(PcapBleWriter):
         """
         Generate payload with specific header.
         """
+        # rssi should be between from -127 to +20 (ref BLE spec 5.2 Vol.4 Part E p2411)
+        # standart say if unknow it is equals to 127 (0x7f)
+        if (-127 <= -packet[3] and -packet[3] <= 20):
+            rssi = -packet[3]
+        else:
+            rssi = 127
+
         payload_header = pack(
             '<BbbBIH',
             packet[2],
-            -packet[3],
+            rssi,
             -100,
             0,
             aa,
